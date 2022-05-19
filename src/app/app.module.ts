@@ -15,8 +15,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
   declarations: [
     AppComponent,
     MoviesComponent,
-    SidebarComponent,
-    LoginComponent
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
