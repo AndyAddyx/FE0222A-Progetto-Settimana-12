@@ -18,7 +18,6 @@ export interface AuthData {
   providedIn: 'root'
 })
 export class AuthService {
-
   jwtHelper = new JwtHelperService()
   url = 'http://localhost:4201';
   private authSubj = new BehaviorSubject<null | AuthData>(null);
