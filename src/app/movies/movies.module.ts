@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MoviesComponent } from './movies.component';
 
-
-
-
-const routes: Routes = [{path:'', component: MoviesComponent}];
+const routes: Routes = [
+  {
+    path:'', 
+    component: MoviesComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -16,8 +18,6 @@ const routes: Routes = [{path:'', component: MoviesComponent}];
     CommonModule,
     MatCardModule,
     RouterModule.forChild(routes)
-
-
   ]
 })
 export class MoviesModule { }

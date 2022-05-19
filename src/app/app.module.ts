@@ -8,15 +8,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
 import { MoviesComponent } from './movies/movies.component';
+import { LoginComponent } from './login/login.component';
 import { SidebarModule } from './sidebar/sidebar.module';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
     SidebarComponent,
-
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +26,6 @@ import { SidebarModule } from './sidebar/sidebar.module';
     MatSidenavModule,
     SidebarModule,
     HttpClientModule
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
