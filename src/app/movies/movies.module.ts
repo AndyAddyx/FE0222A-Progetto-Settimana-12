@@ -6,7 +6,7 @@ import { MoviesComponent } from './movies.component';
 
 const routes: Routes = [
   {
-    path:'', 
+    path:'',
     component: MoviesComponent
   }
 ];
