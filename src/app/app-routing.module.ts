@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+/**
+ * Guard
+ */
+import { AuthGuardService } from './guard/auth.guard'
+
 const routes: Routes = [
   {
     path: '',
     loadChildren: ()=>
-    import('./movies/movies.module').then((m)=>m.MoviesModule)
+    import('./movies/movies.module').then((m)=>m.MoviesModule),
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'profile',
     loadChildren: ()=>
-    import('./profile/profile.module').then((m)=>m.ProfileModule)
+    import('./profile/profile.module').then((m)=>m.ProfileModule),
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'login',

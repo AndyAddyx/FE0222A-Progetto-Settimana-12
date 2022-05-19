@@ -26,4 +26,16 @@ export class AuthService {
   timeoutLogout:any
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  public isLoggedIn() {
+    /**
+     * Al momento non è gestito, quindi 
+     * schiantiamo il valore true o false 
+     * e vediamo il comportamento della guard
+     * 
+     * false vuol dire che non sei loggato, altrimenti metti true
+     */
+
+    return true
+  }
 }
