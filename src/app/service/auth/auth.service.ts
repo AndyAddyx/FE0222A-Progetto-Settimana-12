@@ -39,6 +39,7 @@ export interface LoginToken {
 export class AuthService 
 {
   URL = 'http://localhost:4201'
+  private userStorageKey: string = 'user'
   private authSubject = new BehaviorSubject<null | AuthData>(null)
   user$ = this.authSubject.asObservable()
   isLoggedIn$ = this.user$.pipe(map(user=>!!user))
@@ -50,12 +51,12 @@ export class AuthService
       console.log(val)
     }),tap(data=>{
       this.authSubject.next(data)
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem(this.userStorageKey, JSON.stringify(data))
     }))
   }
 
   getCurrentSession(): AuthData {
-    const jsonData: any = localStorage.getItem('user')
+    const jsonData: any = localStorage.getItem(this.userStorageKey)
     return JSON.parse(jsonData)
   }
 
@@ -69,6 +70,7 @@ export class AuthService
   }
 
   public logout() {
+    localStorage.removeItem(this.userStorageKey)
     this.authSubject.next(null)
     this.router.navigate(['/login'])
   }
