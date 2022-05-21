@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
-import { MoviesComponent } from './movies/movies.component';
+import { MoviesComponent } from './module/movies/movies.component';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './module/auth/auth.module';
 
 @NgModule({
   declarations: [

@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators'
 
+import { AuthData } from './../../module/login/interface/authdata.interface'
+
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -19,16 +21,6 @@ export interface SignupData {
   surname: string,
   email: string,
   password: string
-}
-
-export interface AuthData {
-  accessToken: string;
-  user: {
-    email: string;
-    id: number;
-    name: string;
-    surname: string;
-  };
 }
 
 export interface LoginRequest {
@@ -44,13 +36,12 @@ export interface LoginToken {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-
+export class AuthService 
+{
   URL = 'http://localhost:4201'
   private authSubject = new BehaviorSubject<null | AuthData>(null)
   user$ = this.authSubject.asObservable()
   isLoggedIn$ = this.user$.pipe(map(user=>!!user))
-
 
   constructor(private http:HttpClient, private router: Router ) { }
 
@@ -60,19 +51,22 @@ export class AuthService {
     }),tap(data=>{
       this.authSubject.next(data)
       localStorage.setItem('user', JSON.stringify(data))
-
     }))
+  }
 
+  getCurrentSession(): AuthData {
+    const jsonData: any = localStorage.getItem('user')
+    return JSON.parse(jsonData)
+  }
+
+  applyCurrentSession() {
+    let data: AuthData = this.getCurrentSession()
+    this.authSubject.next(data)
   }
 
   signup(data:SignupData){
      return this.http.post(`${this.URL}/register`, data)
-
-
   }
-
-
-
 
   public logout() {
     this.authSubject.next(null)

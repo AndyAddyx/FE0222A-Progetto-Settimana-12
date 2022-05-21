@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../service/movie/movie.service';
-import { Movies } from '../model/movies';
-import { AuthService } from '../service/auth/auth.service';
+import { MovieService } from '../../service/movie/movie.service';
+import { Movies } from '../../model/movies';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-movies',
