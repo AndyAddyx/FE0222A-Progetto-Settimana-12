@@ -9,7 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
 import { MoviesComponent } from './movies/movies.component';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { AuthModule } from './service/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
