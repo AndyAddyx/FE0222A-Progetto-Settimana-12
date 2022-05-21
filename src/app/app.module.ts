@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
 import { MoviesComponent } from './movies/movies.component';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { AuthModule } from './service/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SidebarModule } from './sidebar/sidebar.module';
     MatCardModule,
     MatSidenavModule,
     SidebarModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

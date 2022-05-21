@@ -1,1 +1,31 @@
-<p>register works!</p>
+<div class="row justify-content-center">
+  <div class="col-6">
+
+    <form #form="ngForm" (ngSubmit)="onsubmit(form)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input ngModel name="name" class="form-control" type="text" id="name">
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <input ngModel name="surname" class="form-control" type="text" id="surname">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input ngModel name="email" class="form-control" type="email" id="email">
+      </div>
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input  ngModel name="password" class="form-control" type="password" id="pass">
+      </div>
+      <button class="btn btn-primary mt-3" [disabled]="isLoading" type="submit">Sign Up
+        <span *ngIf="isLoading" class="visually-hidden">Loading...</span>
+      </button>
+      <p>Already a member? <a [routerLink]="['/login']">Log In!</a></p>
+    </form>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+      {{errorMessage}}
+     </div>
+  </div>
+</div>

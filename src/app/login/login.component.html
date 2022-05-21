@@ -1,4 +1,24 @@
-<p>login works!</p>
+<div class="container">
+  <div class="row justify-content-center" id="forminput">
+    <div class="col-6">
+      <form #form="ngForm" (ngSubmit)="onsubmit(form)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input ngModel name="email" class="form-control" type="email" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pass">Password</label>
+          <input  ngModel name="password" class="form-control" type="password" id="pass">
+        </div>
+        <button class="btn btn-primary mt-3" [disabled]="isLoading" type="submit">Log In
+          <span *ngIf="isLoading" class="visually-hidden">Loading...</span>
+        </button>
+        <p>Not a member? <a [routerLink]="['/register']">Sign Up!</a></p>
+      </form>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+        {{errorMessage}}
+       </div>
+    </div>
+  </div>
 
-
-dsadasdasdasdasd
+</div>

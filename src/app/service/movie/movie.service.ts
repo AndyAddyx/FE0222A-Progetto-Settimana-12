@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Movies } from '../../model/movies';
-import { catchError, throwError, Observable } from 'rxjs';
+import { catchError, throwError, Observable, switchMap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,20 +10,28 @@ import { catchError, throwError, Observable } from 'rxjs';
 export class MovieService {
   baseUrl = 'http://localhost:4201'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authSrv: AuthService) { }
 
-  getMovies(): Observable<Movies[]> {
+  getMovies() {
     return this.http.get<Movies[]>(`${this.baseUrl}/movies-popular`)
+
+    /*return this.http.get<Movies[]>(`${this.baseUrl}/movies-popular`)
       .pipe(
         catchError(errore => throwError(() => errore))
-      )
+      )*/
   }
 
   getMovie(id:number): Observable<Movies> {
-    return this.http.get<Movies>(`${this.baseUrl}/movies-popular/${id}`)
+    return this.authSrv.user$.pipe(switchMap(user=>{
+      return this.http.get<Movies>(`${this.baseUrl}/movies-popular/${id}`, {headers: new HttpHeaders({
+        "Authorization": `Bearer ${user?.accessToken}`
+      })})
+
+    }))
+    /*return this.http.get<Movies>(`${this.baseUrl}/movies-popular/${id}`)
     .pipe(catchError(errore => {
       return throwError(()=> errore)
-    }))
+    }))*/
 
 
   }

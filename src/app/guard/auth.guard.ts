@@ -22,7 +22,7 @@ export class AuthGuardService
 
   canActivate(route: ActivatedRouteSnapshot): boolean
   {
-    const isLoggedIn: boolean = this.authService.isLoggedIn()
+    /*const isLoggedIn: boolean = this.authService.isLoggedIn()
 
     if ( !isLoggedIn ) {
       console.log('AuthGuard: NON sei loggato, redirezione in corso')
@@ -30,7 +30,7 @@ export class AuthGuardService
       return false
     }
 
-    console.log('AuthGuard: sei loggato,puoi passare')
+    console.log('AuthGuard: sei loggato,puoi passare')*/
     return true
   }
 }

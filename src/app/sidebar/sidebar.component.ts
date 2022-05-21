@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
-  constructor() { }
+  constructor(private authSrv: AuthService) { }
 
   ngOnInit(): void {
+    this.authSrv.isLoggedIn$.subscribe((isLoggedIn)=>{
+      isLoggedIn = isLoggedIn
+    })
   }
 
 }

@@ -14,12 +14,20 @@ import { tap, map } from 'rxjs/operators'
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+export interface SignupData {
+  name: string,
+  surname: string,
+  email: string,
+  password: string
+}
+
 export interface AuthData {
   accessToken: string;
   user: {
     email: string;
     id: number;
     name: string;
+    surname: string;
   };
 }
 
@@ -37,60 +45,51 @@ export interface LoginToken {
   providedIn: 'root'
 })
 export class AuthService {
-  jwtHelper = new JwtHelperService()
-  url = 'http://localhost:4201';
-  private authSubj = new BehaviorSubject<null | AuthData>(null);
 
-  user$ = this.authSubj.asObservable();
-  timeoutLogout:any
+  URL = 'http://localhost:4201'
+  private authSubject = new BehaviorSubject<null | AuthData>(null)
+  user$ = this.authSubject.asObservable()
+  isLoggedIn$ = this.user$.pipe(map(user=>!!user))
 
-  constructor(private http: HttpClient, private router: Router) { }
 
-  // RICORDA è solo una traccia, non è completato, TODO!!!!!!
-  login(payload: LoginRequest): Observable<LoginToken> {
-    // const url = sprintf('%s%s', this.env.apiGateway, '/v1/auth/login')
-    const url = this.url
-    return this.http.post<LoginToken>(url, payload, {
-      // headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      // observe: 'response'
-    }).pipe(
-      map((response: any) => {
-        const loginToken: LoginToken = {
-          access_token: response.body.access_token,
-          // expires_in: response.body.expires_in,
-          // token_type: response.body.token_type,
-          // scope: response.body.scope,
-          refresh_token: response.body.refresh_token,
-          // user_id: response.body.user_id
+  constructor(private http:HttpClient, private router: Router ) { }
 
-          /**
-           * Sto porco bastardo ha smesso di funzionare
-           */
-          //user_id: response.headers.get('X-Api-User-Id')
-        }
+  login(data:{email:string, password:string}){
+    return this.http.post<AuthData>(`${this.URL}/login`, data).pipe(tap(val =>{
+      console.log(val)
+    }),tap(data=>{
+      this.authSubject.next(data)
+      localStorage.setItem('user', JSON.stringify(data))
 
-        // if(!loginToken.user_id) {
-        //   console.warn('Hey hey hey, userId is not exposed, check web server configuration')
-        // }
+    }))
 
-        return loginToken
-      })
-    )
   }
 
-  public logout() {}
+  signup(data:SignupData){
+     return this.http.post(`${this.URL}/register`, data)
+
+
+  }
+
+
+
+
+  public logout() {
+    this.authSubject.next(null)
+    this.router.navigate(['/login'])
+  }
 
   public refresh() {}
 
-  public isLoggedIn() {
-    /**
-     * Al momento non è gestito, quindi 
-     * schiantiamo il valore true o false 
-     * e vediamo il comportamento della guard
-     * 
-     * false vuol dire che non sei loggato, altrimenti metti true
-     */
+  /*public isLoggedIn() {
+    /** Ricordati, devo ancora fare la logica di logged in
+     * Al momento non è gestito, quindi
+     * metto al volo il valore true o false
+     * e vedo il comportamento della guard
+     *
+     * false vuol dire che non sono loggato, altrimenti è true
+
 
     return true
-  }
+  }*/
 }

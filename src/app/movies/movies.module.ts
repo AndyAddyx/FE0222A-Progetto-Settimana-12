@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MoviesComponent } from './movies.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
     path:'',
-    component: MoviesComponent
+    component: MoviesComponent,
+    canActivate: [AuthGuard]
+
+
   }
 ];
 
