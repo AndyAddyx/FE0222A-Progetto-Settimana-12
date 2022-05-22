@@ -1,27 +1,42 @@
-# ProgettoSettimana12
+## Progetto DEMO
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
+# INSTALLAZIONE JSON SERVER E JSON SERVER AUTH
+npm install -D json-server json-server-auth
 
-## Development server
+# INSTALLAZIONE ANGULAR JWT
+npm install @auth0/angular-jwt
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# AVVIO DI JSON SERVER 
+Da eseguirsi insieme a ng s in due terminali separati: 
+STRINGHE DA INSERIRE NEL FILE PACKAGE.JSON ALLA FINE DEGLI SCRIPTS DI AVVIO E DA AVVIARE DA TERMINALE CON IL COMANDO NPM RUN BACKEND
+"backend": "json-server-auth --watch db.json --routes routes.json --port 4201 --delay 1000",
+"full-stack": "concurrently \"npm run backend\" \"npm run start\""
 
-## Code scaffolding
+# Compila progetto PER CORDOVA USA PUNTINO  
+ng build --base-href /
+ng build --base-href / --optimization=false
+ng build --base-href .
+ng build --configuration=staging --base-href /
+ng build --configuration=staging --base-href .
+ng build --configuration=production --base-href .
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Creare modulo
+ng generate library my-module
 
-## Build
+# Creare componente in progetto
+ng g c --project=my-module /component/countdown
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Creare nuova app directory corrente
+ng new appName --directory /.
 
-## Running unit tests
+# Verifica dipendenze angular da aggiornare 
+ng update
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Verifica dipendenze da aggiornare
+npm outdated
 
-## Running end-to-end tests
+# Aggiornare dipendenze scadute ( richiede npm install -g npm-check-updates )
+ncu -u
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Risolvere Unknown version XX of android in build modulo e app
+npx browserslist --update-db

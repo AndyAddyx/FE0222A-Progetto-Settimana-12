@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from '@angular/common/http'
 
 /**
@@ -7,29 +8,29 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, Htt
 import { Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 
+/**
+ * Servizi interni
+ */
+import { AuthService } from './../service/auth/auth.service'
+
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor() { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-            
-          // console.log('HttpResponse')
-          // console.log(event)
+
         }
       }),
       catchError((error: HttpErrorResponse, caught) => {
         if (error.status === 401) {
-          
-
-          // 1) effettuare injection di authService
-          // 2) se entriamo qui, vuol dire che il token non è valido: chiamare logout di authService
-          // 3) redirezionare al login
-
-          // console.log('Errore')
-          // console.log(error)
+          this.authService.logout()
+          this.router.navigate(['/login'])
         }
         
         return throwError(() => error)

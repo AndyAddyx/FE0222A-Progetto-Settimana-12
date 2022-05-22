@@ -66,7 +66,7 @@ export class AuthService
   }
 
   signup(data:SignupData){
-     return this.http.post(`${this.URL}/register`, data)
+    return this.http.post(`${this.URL}/register`, data)
   }
 
   public logout() {
