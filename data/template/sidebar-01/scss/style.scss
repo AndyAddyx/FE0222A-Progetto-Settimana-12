@@ -1,11 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/scss/bootstrap";
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-
+@import 'bootstrap/bootstrap';
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
 
 $font-primary: 'Poppins',Arial, sans-serif;
 $primary: #f8b739;
@@ -200,4 +195,3 @@ a[data-toggle="collapse"] {
 		color: rgba(255,255,255,.5);
 	}
 }
-

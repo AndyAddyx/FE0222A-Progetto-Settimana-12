@@ -1,4 +1,24 @@
-<mat-drawer-container class="example-container">
+<!-- <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>Drawer content</mat-drawer>
   <mat-drawer-content>Main content</mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> -->
+
+
+<nav id="sidebar">
+  <div class="p-4 pt-5">
+    <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+    <ul class="list-unstyled components mb-5">
+      <li class="active">
+        <a [routerLink]="['/']">Home</a>
+      </li>
+      <li>
+        <app-logout></app-logout>
+      </li>
+    </ul>
+
+    <div class="footer">
+      <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+    </div>
+
+  </div>
+</nav>

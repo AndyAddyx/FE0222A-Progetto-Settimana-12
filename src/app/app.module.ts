@@ -5,17 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
-import { MoviesComponent } from './module/movies/movies.component';
-import { SidebarModule } from './sidebar/sidebar.module';
 import { AuthModule } from './module/auth/auth.module';
+import { SidebarModule } from './sidebar/sidebar.module'
+
+/**
+ * Componenti interni
+ */
+import { MoviesComponent } from './module/movies/movies.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { LogoutComponent } from './module/login/component/logout/logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    SidebarComponent
+    SidebarComponent, 
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
