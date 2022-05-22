@@ -1,17 +1,13 @@
-<!-- <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
-</mat-drawer-container> -->
-
-
-<nav id="sidebar">
-  <div class="p-4 pt-5">
-    <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+<nav id="sidebar" class="h-100">
+  <div class="p-4 sticky-top">
     <ul class="list-unstyled components mb-5">
-      <li class="active">
+      <li class="">
         <a [routerLink]="['/']">Home</a>
       </li>
-      <li>
+      <li class="">
+        <a [routerLink]="['/profile']">Profile</a>
+      </li>
+      <li class="pt-2">
         <app-logout></app-logout>
       </li>
     </ul>
