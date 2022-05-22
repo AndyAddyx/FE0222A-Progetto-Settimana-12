@@ -16,7 +16,7 @@ import { AuthService } from './../service/auth/auth.service'
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.authService.logout()
           this.router.navigate(['/login'])
         }
-        
+
         return throwError(() => error)
       })
     )

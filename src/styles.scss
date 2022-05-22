@@ -8,14 +8,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 $font-primary: 'Poppins',Arial, sans-serif;
-$primary: #f8b739;
+$primary: #f83939;
 
 body{
 	font-family: $font-primary;
 	font-size: 14px;
 	line-height: 1.8;
 	font-weight: normal;
-	background: #fafafa;
+	background: #c44040;
 	color: lighten($black,50%);
 }
 a {

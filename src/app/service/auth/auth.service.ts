@@ -36,7 +36,7 @@ export interface LoginToken {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService 
+export class AuthService
 {
   URL = 'http://localhost:4201'
   private userStorageKey: string = 'user'
@@ -48,7 +48,7 @@ export class AuthService
 
   login(data:{email:string, password:string}){
     return this.http.post<AuthData>(`${this.URL}/login`, data).pipe(tap(val =>{
-      
+
     }),tap(data=>{
       this.authSubject.next(data)
       localStorage.setItem(this.userStorageKey, JSON.stringify(data))
@@ -76,16 +76,4 @@ export class AuthService
   }
 
   public refresh() {}
-
-  /*public isLoggedIn() {
-    /** Ricordati, devo ancora fare la logica di logged in
-     * Al momento non è gestito, quindi
-     * metto al volo il valore true o false
-     * e vedo il comportamento della guard
-     *
-     * false vuol dire che non sono loggato, altrimenti è true
-
-
-    return true
-  }*/
 }
