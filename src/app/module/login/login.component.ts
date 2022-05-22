@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   async onsubmit(form:any){
-    console.log(form)
 
     try {
       await this.authSrv.login(form.value).toPromise()

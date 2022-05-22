@@ -6,7 +6,10 @@ import { AuthService } from '../../service/auth/auth.service';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss']
+  styleUrls: ['./movies.component.scss'],
+  host: {
+    'class': 'container p-0 m-0'
+  },
 })
 export class MoviesComponent implements OnInit {
 

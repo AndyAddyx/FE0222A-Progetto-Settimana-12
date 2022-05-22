@@ -26,6 +26,9 @@ ng generate library my-module
 # Creare componente in progetto
 ng g c --project=my-module /component/countdown
 
+# Creare componente in modulo
+ng g c --module=login /component/logout
+
 # Creare nuova app directory corrente
 ng new appName --directory /.
 
